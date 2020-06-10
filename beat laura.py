@@ -1,9 +1,10 @@
-import pyautogui, time, pytesseract, pickle, twl
-from PIL import ImageGrab, Image
+import pyautogui, time, pickle, twl
+#import pytesseract
+#from PIL import ImageGrab, Image
 import numpy as np
 pyautogui.FAILSAFE = True
 pyautogui.PAUSE = 0.03
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files (x86)\Tesseract-OCR\tesseract.exe"
+#pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files (x86)\Tesseract-OCR\tesseract.exe"
 #start timer
 start_time = time.time()
 letters = set(['a', 'b', 'c', 'd' 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
@@ -37,49 +38,53 @@ def self_input():
 #start of next one 519
 
 #save 16 images of letter tiles
-def screenshot():
-    #Create screenshots of all 16 letters
-    for row in range(0, 4):
-        for col in range(0, 4):
-            img = ImageGrab.grab(bbox=(500 +  109 * row, 443 + 107 * col, 550 + 109 * row, 490 + 107 * col))
-            img.save("C:\PY\laura\\x{}y{}letter.png".format(row, col))
-    #Create full screenshot
-    image = ImageGrab.grab()
-    image.save("C:\PY\laura\\fullscreen.png")
+# =============================================================================
+# def screenshot():
+#     #Create screenshots of all 16 letters
+#     for row in range(0, 4):
+#         for col in range(0, 4):
+#             img = ImageGrab.grab(bbox=(500 +  109 * row, 443 + 107 * col, 550 + 109 * row, 490 + 107 * col))
+#             img.save("C:\PY\laura\\x{}y{}letter.png".format(row, col))
+#     #Create full screenshot
+#     image = ImageGrab.grab()
+#     image.save("C:\PY\laura\\fullscreen.png")
+# =============================================================================
     
 
 #convert image tiles to text of images
-def converter():
-    global letters
-    #initialize numpy array
-    grid = np.empty((4, 4), dtype = str)
-    for row in range(0, 4):
-        for col in range(0, 4):
-            #open image and perform letter recognition
-            img = Image.open("C:\PY\laura\\x{}y{}letter.png".format(row, col))
-            letter = pytesseract.image_to_string(img, config = " -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ --psm 10")
-            print(letter)
-            #fix mistakes from pytesseract
-            if(letter == '[L'):
-                 letter = 'L'
-            elif(letter == 'i' or letter == 'nl' or letter == 'a' or letter == '7'):
-                 letter = 'T'
-            elif(letter == 'l'):
-                  letter = 'I'
-            elif(letter == 'Cc'):
-                letter = 'C'
-            elif(letter == 'WwW' or letter == 'Ww' or letter == 'wW'):
-                letter = 'W'
-            elif(letter == 'Oo' or letter == 'oO'):
-                letter = 'O'
-            elif(letter == ''):
-                letter = 'I'
-            elif(letter not in letters):
-                letter = 'T'
-            letter = letter.lower()
-            grid[col][row] = letter
-            np.save('sample grid.npy', grid)
-    return grid
+# =============================================================================
+# def converter():
+#     global letters
+#     #initialize numpy array
+#     grid = np.empty((4, 4), dtype = str)
+#     for row in range(0, 4):
+#         for col in range(0, 4):
+#             #open image and perform letter recognition
+#             img = Image.open("C:\PY\laura\\x{}y{}letter.png".format(row, col))
+#             letter = pytesseract.image_to_string(img, config = " -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ --psm 10")
+#             print(letter)
+#             #fix mistakes from pytesseract
+#             if(letter == '[L'):
+#                  letter = 'L'
+#             elif(letter == 'i' or letter == 'nl' or letter == 'a' or letter == '7'):
+#                  letter = 'T'
+#             elif(letter == 'l'):
+#                   letter = 'I'
+#             elif(letter == 'Cc'):
+#                 letter = 'C'
+#             elif(letter == 'WwW' or letter == 'Ww' or letter == 'wW'):
+#                 letter = 'W'
+#             elif(letter == 'Oo' or letter == 'oO'):
+#                 letter = 'O'
+#             elif(letter == ''):
+#                 letter = 'I'
+#             elif(letter not in letters):
+#                 letter = 'T'
+#             letter = letter.lower()
+#             grid[col][row] = letter
+#             np.save('sample grid.npy', grid)
+#     return grid
+# =============================================================================
 
 #c stands for coordinates
 def selectTiles(cString, cDict, seconds):
@@ -266,6 +271,4 @@ for word in wordList:
     if((time.time() - start_time) >= 83):
         break
 
-
-
-                                                      
+                                               
