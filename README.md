@@ -4,7 +4,7 @@ Kill Word Blitz
 For Word Blitz the Facebook Messenger Game
 This program finds all words possible that are valid words in the scrabble dictionary and automatically inputs them on your screen
 It requires user input to fill in the 16 letters from the grid
-It always finds every word possible for each game and inputs them with more than enough time to spare. 
+It always finds every word possible (that is allowed in official scrabble dictionary) for each game and inputs them with more than enough time to spare. However it does not get all words, because some "words" are accepted in Word Blitz but not accepted by the package I use that checks if a word is an official scrabble word
 It does not take score multipliers into account.
 
 
