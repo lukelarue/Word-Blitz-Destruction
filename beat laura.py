@@ -19,6 +19,8 @@
 #then immediately after the program starts you type a b c d e f g h i j k l m n o p
 #and hit enter, it takes anywhere from 10-30 seconds depending on how many words it can find, then it goes crazy and gets u 1000s of pts
 
+#additional file "beginning letters" is a pickled file containing a list of up to 3 letters that start all english words, this must
+#be in your file where you run this program. beginning letters is used to cut the search time from recursion roughly in half
 
 import pyautogui, time, pickle, twl
 #import pytesseract
